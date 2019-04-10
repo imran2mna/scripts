@@ -1,0 +1,58 @@
+[maxscale]
+threads=auto
+ 
+# Servers
+[server1]
+type=server
+address=142.44.160.13
+port=3306
+protocol=MySQLBackend
+ 
+[server2]
+type=server
+address=142.44.160.154
+port=3306
+protocol=MySQLBackend
+ 
+[server3]
+type=server
+address=144.217.94.18
+port=3306
+protocol=MySQLBackend
+ 
+# Monitoring for the servers
+[Galera Monitor]
+type=monitor
+module=galeramon
+servers=server1,server2,server3
+user=superuser
+passwd=super
+monitor_interval=1000
+ 
+# Galera router service
+[Galera Service]
+type=service
+#router=readwritesplit
+router=readconnroute
+servers=server1,server2,server3
+user=superuser
+passwd=super
+ 
+# MaxAdmin Service
+[MaxAdmin Service]
+type=service
+router=cli
+ 
+# Galera cluster listener
+[Galera Listener]
+type=listener
+service=Galera Service
+protocol=MySQLClient
+port=3306
+ 
+# MaxAdmin listener
+[MaxAdmin Listener]
+type=listener
+service=MaxAdmin Service
+protocol=maxscaled
+socket=default
