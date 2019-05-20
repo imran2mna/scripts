@@ -10,7 +10,7 @@
 
 # this is only for the mysqld standalone daemon
 [mysqld]
-
+innodb_file_per_table=1
 #
 # * Galera-related settings
 #
