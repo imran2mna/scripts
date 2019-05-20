@@ -14,17 +14,11 @@ address=142.44.160.154
 port=3306
 protocol=MySQLBackend
  
-[server3]
-type=server
-address=144.217.94.18
-port=3306
-protocol=MySQLBackend
- 
 # Monitoring for the servers
 [Galera Monitor]
 type=monitor
 module=galeramon
-servers=server1,server2,server3
+servers=server1,server2
 user=superuser
 passwd=super
 monitor_interval=1000
@@ -32,9 +26,9 @@ monitor_interval=1000
 # Galera router service
 [Galera Service]
 type=service
-#router=readwritesplit
-router=readconnroute
-servers=server1,server2,server3
+router=readwritesplit
+#router=readconnroute
+servers=server1,server2
 user=superuser
 passwd=super
  
@@ -48,7 +42,7 @@ router=cli
 type=listener
 service=Galera Service
 protocol=MySQLClient
-port=3306
+port=3307
  
 # MaxAdmin listener
 [MaxAdmin Listener]
@@ -56,3 +50,11 @@ type=listener
 service=MaxAdmin Service
 protocol=maxscaled
 socket=default
+
+#Following db script need to be executed
+#create user 'superuser'@'142.44.160.13' identified by 'super';
+#grant select on mysql.user to 'superuser'@'142.44.160.13';
+#grant select on mysql.db to 'superuser'@'142.44.160.13';
+#grant select on mysql.tables_priv to 'superuser'@'142.44.160.13';
+#grant show databases on *.* to 'superuser'@'142.44.160.13';
+
