@@ -1,0 +1,95 @@
+    1  systemctl reboot 
+    2  cat /etc/ssh/sshd_config 
+    3  grep wheel /etc/group
+    4  ufw status
+    5  ufw status verbose
+    6  sestatus
+    7  apt install -y policycoreutils
+    8  sestatus
+    9  getenforce ce
+   10  getenforce
+   11  selinux_check_access 
+   12  hostnamectl set-hostname 'poc-nc2019'
+   13  su -
+   14  exit
+   15  adduser ncteam
+   16  usermod -aG sudo ncteam 
+   17  su - ncteam 
+   18  grep "Failed password" /var/log/auth.log
+   19  grep "Failed" /var/log/auth.log
+   20  vim /etc/ssh/sshd_config 
+   21  systemctl restart sshd
+   22  exit
+   23  journalctl | less
+   24  exit
+   25  apt install mariadb-server
+   26  apt install emacs-nw
+   27  apt install emacs-nox
+   28  ls
+   29  emacs /etc/mysql/my.cnf
+   30  emacs /etc/mysql/mariadb.conf.d/50-server.cnf 
+   31  mysql
+   32  emacs /etc/mysql/mariadb.conf.d/50-server.cnf 
+   33  /etc/init.d/mysql restart
+   34  mysql
+   35  a2enmod rewrite headers env dir mime && service apache2 restart
+   36  cd /etc/apache2/sites-enabled/
+   37  ls
+   38  emacs 000-default.conf 
+   39  cd /var/www/
+   40  ls
+   41  wget -nd https://download.nextcloud.com/server/releases/nextcloud-16.0.1.zip
+   42  ls
+   43  unzip nextcloud-16.0.1.zip 
+   44  sudo chown www-data:www-data nextcloud
+   45  sudo chown -R www-data:www-data nextcloud
+   46  emacs /etc/apache2/sites-enabled/000-default.conf 
+   47  cd /etc/apache2/sites-available/
+   48  ls
+   49  cp 000-default.conf nextcloud.conf
+   50  emacs nextcloud.conf 
+   51  cd ../sites-enabled/
+   52  ls
+   53  rm 000-default.conf 
+   54  ln -s ../sites-available/nextcloud.conf .
+   55  ls
+   56  /etc/init.d/apache2 restart
+   57  cd
+   58  cd /var/
+   59  ls
+   60  df -h
+   61  mkdir nextcloud-data
+   62  chown www-data:www-data nextcloud-data
+   63  ls
+   64  emacs /etc/mysql/mariadb.conf.d/50-server.cnf
+   65  mysql --version 
+   66  emacs /etc/mysql/mariadb.conf.d/50-server.cnf
+   67  /etc/init.d/mysql restat
+   68  /etc/init.d/mysql restart
+   69  cd /etc/php/7.2
+   70  ls
+   71  emacs apache2/php.ini 
+   72  mysql
+   73  emacs /etc/mysql/mariadb.conf.d/50-server.cnf
+   74  /etc/init.d/mysql restart
+   75  emacs /var/www/nextcloud/config/config.
+   76  emacs /var/www/nextcloud/config/config.php 
+   77  mysql
+   78  /etc/init.d/mysql restart
+   79  cd /var/www/nextcloud/config/
+   80  touch CAN_INSTALL
+   81  emacs config.php
+   82  emacs /etc/apache2/sites-enabled/nextcloud.conf 
+   83  /etc/init.d/apache2 restasrt
+   84  /etc/init.d/apache2 restart
+   85  emacs /etc/php/7.2/apache2/conf.d/10-opcache.ini 
+   86  apt search opcache
+   87  /etc/init.d/apache2 restart
+   88  ls
+   89  cd ..
+   90  ls
+   91  emacs info.php
+   92  sudo -u www-data crontab -e
+   93  sudo -u www-data php -f /var/www/nextcloud/cron.php
+   94  history 
+   95  history > /home/ncteam/root.txt

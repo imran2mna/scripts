@@ -1,0 +1,27 @@
+    1  sudo -i
+    2  who
+    3  grep "Failed password" /var/log/auth.log
+    4  exit
+    5  passwd 
+    6  exit
+    7  sudo -i
+    8  sestatus 
+    9  exit
+   10  hostnamectl 
+   11  journalctl | less
+   12  sudo -i
+   13  exit
+   14  sudo ls
+   15  cd /var/www/
+   16  sudo -u 
+   17  sudo su -u
+   18  apt install libapache2-mod-php7.3 php7.3-cli php7.3-common php7.3-mbstring php7.3-gd php7.3-intl php7.3-xml php7.3-mysql php7.3-zip php7.3-curl php7.3-fpm php7.3-json php7.3-bz2  php-dompdf php-apcu imagemagick php-imagick redis-server php-redis unzip 
+   19  sudo apt install libapache2-mod-php7.3 php7.3-cli php7.3-common php7.3-mbstring php7.3-gd php7.3-intl php7.3-xml php7.3-mysql php7.3-zip php7.3-curl php7.3-fpm php7.3-json php7.3-bz2  php-dompdf php-apcu imagemagick php-imagick redis-server php-redis unzip 
+   20  sudo apt update 
+   21  sudo apt install libapache2-mod-php php-cli php-common php-mbstring php-gd php-intl php-xml php-mysql php-zip php-curl php-fpm php-json php-bz2  php-dompdf php-apcu imagemagick php-imagick redis-server php-redis unzip 
+   22  sudo su -
+   23  systemctl status httpd
+   24  systemctl status apache2
+   25  history 
+   26  sudo -i
+   27  history > ncteam.txt

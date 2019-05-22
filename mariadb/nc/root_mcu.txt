@@ -1,0 +1,83 @@
+    1  exit
+    2  vim /etc/ssh/sshd_config 
+    3  sestatus
+    4  apt install policycoreutils
+    5  sestatus
+    6  grep 7022 /etc/ssh/sshd_config 
+    7  systemctl restart sshd
+    8  ss -plunt | grep 7022
+    9  ip addr | grep inet
+   10  vim /etc/ssh/sshd_config 
+   11  useradd ncteam
+   12  grep ncteam
+   13  grep ncteam /etc/passwd
+   14  su - ncteam 
+   15  hostnamectl set-hostname 'poc-mcu2019'
+   16  su -
+   17  passwd ncteam 
+   18  su - ncteam 
+   19  hostnamectl 
+   20  mkhomedir_helper ncteam
+   21  ls
+   22  grep ncteam /etc/passwd
+   23  su - ncteam 
+   24  userdel -h
+   25  userdel --remove ncteam
+   26  useradd -h
+   27  useradd --create-home ncteam
+   28  su - ncteam
+   29  usermod -aG sudo ncteam
+   30  passwd ncteam
+   31  vim /etc/ssh/sshd_config 
+   32  systemctl restart sshd
+   33  exit
+   34  apt-add-repository universe
+   35  ls
+   36  mkdir repository
+   37  cd repository/
+   38  tar xf ~ncteam/nextcloud-spreed-v0.0.5.tar.gz 
+   39  ls
+   40  ln -s nextcloud-spreed-v0.0.5 nextcloud-spreed
+   41  cd nextcloud-spreed
+   42  ls
+   43  cd repository/
+   44  ls
+   45  pwd
+   46  nano /etc/apt/sources.list.d/nextcloud-spreed-repository.list
+   47  apt-key add struktur-ag-deb-sign-1.pub 
+   48  apt update
+   49  nano /etc/apt/sources.list.d/nextcloud-spreed-repository.list
+   50  apt update
+   51  apt-get install nextcloud-spreed-services
+   52  ps aux |grep janus
+   53  systemctl status janus
+   54  cat /etc/nextcloud-spreed-signaling/server.conf
+   55  cd /etc/nextcloud-spreed-signaling/server.conf
+   56  ls -la /etc/nextcloud-spreed-signaling/
+   57  ls -la
+   58  cp server.conf server.conf.orig
+   59  ls -la
+   60  cd /etc/nextcloud-spreed-signaling/
+   61  ls -la
+   62  cp server.conf server.conf.orig
+   63  ls -la
+   64  nano server.conf
+   65  systemctl restart nextcloud-spreed-signaling
+   66  systemctl status nextcloud-spreed-signaling
+   67  journalctl -u nextcloud-spreed-signaling -r
+   68  less server.conf
+   69  apt install nginx
+   70  cd /etc/nginx/sites-available/
+   71  ls
+   72  nano default 
+   73  cp default default.orig
+   74  nano default
+   75  nano ../nginx.conf 
+   76  nano default
+   77  nano ../conf.d/nextcloud-spreed-signaling.conf
+   78  nano default
+   79  systemctl restart nginx
+   80  cd ..
+   81  ls conf.d/nextcloud-spreed-signaling.conf 
+   82  ss -plunt | grep LISTEN
+   83  history > /home/ncteam/root_mcu.txt
