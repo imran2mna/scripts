@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "I am $$, running in container." > /usr/local/apache2/htdocs/pid
+httpd-foreground 
+

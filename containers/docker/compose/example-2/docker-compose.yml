@@ -1,0 +1,10 @@
+web:
+  image: httpd:2.4
+  container_name: web
+  links:
+    - cache
+  ports:
+    - "8080:80"
+cache:
+  image: httpd:2.4
+  container_name: cache

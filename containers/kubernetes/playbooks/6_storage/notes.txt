@@ -1,0 +1,29 @@
+Observations
+============
+
+Inside host machine
+-------------------
+
+[imran@dell-home ~]$ ls -ldZ /var/lib/my-data/
+drwxr-xr-x. 2 root root system_u:object_r:container_var_lib_t:s0 4096 Oct  4 16:43 /var/lib/my-data/
+
+Inside container
+-----------------
+root@web:/usr/local/apache2# lsblk 
+NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sr0      11:0    1  1024M  0 rom  
+sda       8:0    0 298.1G  0 disk 
+|-sda4    8:4    0     1K  0 part 
+|-sda2    8:2    0  80.2G  0 part 
+|-sda9    8:9    0     4G  0 part [SWAP]
+|-sda7    8:7    0   512M  0 part 
+|-sda10   8:10   0  10.6G  0 part 
+|-sda5    8:5    0  69.3G  0 part 
+|-sda3    8:3    0  70.4G  0 part 
+|-sda1    8:1    0   100M  0 part 
+|-sda8    8:8    0    15G  0 part /usr/local/apache2/htdocs
+`-sda6    8:6    0    48G  0 part 
+
+*** See above mounted volumes - sda8
+
+

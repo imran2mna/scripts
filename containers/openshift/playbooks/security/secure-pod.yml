@@ -1,0 +1,20 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+  name: secure-pod
+  labels:
+    name: secure-pod
+    app: webserver
+spec:
+  containers:
+    - name: secure-pod
+      image: docker.io/httpd:2.4
+      ports:
+        - containerPort: 80
+          protocol: TCP
+      env:
+        - name: APP_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: lanka

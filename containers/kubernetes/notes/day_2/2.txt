@@ -1,0 +1,78 @@
+Kubernets
+	- master
+	- node
+
+YAML definitions for scheduling
+
+Kubernetes Master
+===============
+
+1. API server
+2. Scheduler
+3. Controller
+4. etcd - distributed key-value database, central cluster db
+
+*** We may have multiple masters.
+
+
+Kubernetes Node
+==============
+
+1. kube-proxy (network)
+2. dockerd
+3. kubelet (agent - reporting health,metrics)
+4. fluentd (log management) 
+
+Both dockerd and kubelet are packaged into "Supervisord"
+
+
+ - Homogenous Pods
+ - Hetrogenous Pods
+
+Kubernetes Pod
+==============
+
+Group of one or more containers that are always co-located, co-scheduled, and run in a shared context.
+Containers in the same pod have the same hostname
+Each pod is isolated by 
+	- process ID (PID) namespace
+	- Network namespace
+	- Interprocess Communication (IPC) namespace
+	- Unix Time Sharing (UTS) namespace
+
+Which is an alternative to a 'VM with multiple processes'
+
+************************************************
+In docker, single unit of deployment: container
+In kubernetes, single unit of deployment: pod
+************************************************
+
+Labels & Selectors
+==================
+
+Key/Value pairs associated with Kubernetes objects.
+Used to organize and select subsets of objects.
+Attached to objects at creation time but modified at any time.
+Labels are the essential glue to associate one API object with other.
+	- Replication Controller -> Pods
+	- Service -> Pods
+	- Pods -> Nodes (eg: database on selected node only)
+
+Services
+========
+
+An abstraction to define a logical set of Pods bound by a policy by to access them.
+Services are exposed through internal and external endpoints.
+Services can also point to non-Kubernetes endpoints through a Virtual-IP-Bridge.
+Supports TCP and UDP.
+Interfaces with kube-proxy to manipulate iptables.
+Service can be exposed internal or external to the cluster.
+
+****
+	- Node Port
+	- Cluster IP
+****
+
+
+
+

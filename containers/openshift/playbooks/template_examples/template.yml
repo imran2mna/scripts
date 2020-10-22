@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: httpd-template
+  annotations:
+    description: "web services"
+    iconClass: "icon-httpd"
+    tags: "webserver,thread"
+
+objects:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      name: httpd-master
+    spec:
+      containers:
+        - image: docker.io/httpd:2.4
+          name: httpd-master
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: STORAGE
+              value: ${STORAGE}
+
+parameters:
+  - name: STORAGE
+    description: "Storage path to be accessed"
+    from: '[A-Z0-9]{8}'
+    generate: expression 
+labels:
+  httpd: master

@@ -1,0 +1,23 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+  name: wordpress
+  labels:
+    name: wordpress
+    app: content_server
+spec:
+  containers:
+    - name: wordpress
+      image: docker.io/httpd:2.4
+      ports:
+        - containerPort: 80
+          protocol: TCP
+      volumeMounts:
+        - 
+          mountPath: /usr/local/apache2/htdocs
+          name: htdocs 
+  volumes:
+    - 
+      name: htdocs
+      persistentVolumeClaim:
+        claimName: wordpress-claim

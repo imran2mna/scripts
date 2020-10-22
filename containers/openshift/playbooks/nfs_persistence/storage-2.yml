@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wordpress-storage
+  labels:
+    app: content_server
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteOnce
+# persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    path: /shared/tools
+    server: 172.0.25.11
+  claimRef:
+    name: wordpress-claim
+    namespace: container-world

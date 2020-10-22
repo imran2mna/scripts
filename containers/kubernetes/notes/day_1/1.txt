@@ -1,0 +1,74 @@
+Need for Container Orchestration
+================================
+
+containers are becoming the standard unit of deployment
+Each container image has - code, binaries, configuration, libraries, frameworks, runtime
+
+Developer centric software
+
+speed, simplicity, repeatability - management & debugging
+
+Docker has solved the problem of packaging, deploying and running applications.
+Docker has three componets:
+	1. container engine
+	2. registry
+	3. tools
+
+Docker is great for managing a few containers running on a fewer machines.
+Production applications deal with dozens of containers running on hunderds of machines.
+
+The unit of deployment is changing from a machine to container.
+Infrastructure has become immutable
+
+Datacenter as a large server (cluster)
+	- Docker Swarm
+	- Kubernetes
+	- Mesosphere DC/OS (twitter)
+
+Automate the distribution of applications.
+Ensure higher levels of utilization and efficiency
+
+A DATACENTER IS A NOT A COLLECTION OF COMPUTERS, A DATACENTER IS A COMPUTER.
+
+
+Inspired by Google project Borg, currently managed by Linux foundation as Open source project.
+Unified API for deploying,batch jobs and databases.
+Automates application configuration through "Service Discovery"
+
+Kubernetes Architecture - Distributed 
+
+
+Minikube
+	- simple way of kubernetes clustering
+
+Kubernetes Multi-Node Cluster
+	- emulates production environment
+	- good for testing advanced scenarios
+
+
+Google Container Engine
+	- hosted & managed by Google
+
+
+Kubernetes Terminology
+=====================
+
+Nodes
+	- Hosts that run kubernetes applications
+
+Containers
+	- Unit of packaging
+
+Pods
+	- Unit of deployment
+
+Replication Controller
+	- Ensures availability and scalability
+
+Labels
+	- key-value pair for identification
+
+Services
+	- collection of pods exposed as an endpoint
+
+

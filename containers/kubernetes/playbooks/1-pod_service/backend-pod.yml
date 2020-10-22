@@ -1,0 +1,14 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+  name: backend
+  labels:
+    name: backend
+    app: webserver
+spec:
+  containers:
+    - name: backend
+      image: docker.io/httpd:2.4
+      ports:
+        - containerPort: 80
+          protocol: TCP
