@@ -1,0 +1,8 @@
+resource_registry:
+  My::Server::Custom::WebServer: "web_server_withfloatingip.yaml"
+
+parameters:
+  key_name: "dev-keypair"
+  image_name: "centos-web"
+  instance_name: "webserver"
+

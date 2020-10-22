@@ -1,0 +1,55 @@
+heat_template_version: 2016-10-14
+description: Using ResourceGroup to scale out the custom instance
+
+parameters:
+  image_name:
+    type: string
+    description: Image used for servers
+  instance_name:
+    type: string
+    description: Name for the web server
+  key_name:
+    type: string
+    description: SSH key to connect to the servers
+  instance_flavor:
+    type: string
+    description: flavor used by the servers
+  public_net:
+    type: string
+    description: Name of public network into which servers get deployed
+  private_net:
+    type: string
+    description: Name of private network into which servers get deployed
+  private_subnet:
+    type: string
+    description: Name of private subnet into which servers get deployed
+  instance_count:
+    type: number
+    constraints:
+      - range: { min: 1 , max: 2 }
+
+resources:
+  my_resource:
+    type: OS::Heat::ResourceGroup
+    properties:
+      count: { get_param: instance_count}
+      resource_def:
+        type: My::Server::Custom::WebServer
+        properties:
+          instance_name: { get_param: instance_name }
+          instance_flavor: { get_param: instance_flavor }
+          key_name: { get_param: key_name }
+          image_name: { get_param: image_name }
+          public_net: { get_param: public_net }
+          private_net: { get_param: private_net }
+          private_subnet: { get_param: private_subnet }
+
+outputs:
+  mywebsite_url:
+    description: >
+      external URL that can be used
+    value:
+      str_replace:
+        template: http://host/
+        params:
+          host: {get_attr: [my_resource, output_lists, website_url]}

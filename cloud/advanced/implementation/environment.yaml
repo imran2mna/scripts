@@ -1,0 +1,10 @@
+resource_registry:
+  My::Server::Custom::WebServer: my_server.yaml
+parameters:
+  image_name: centos-7
+  instance_name: local-server
+  instance_name: web.custom
+  key_name: developer-keypair
+  public_net: public_net
+  private_net: web_server_net
+  private_subnet: web_server_subnet
