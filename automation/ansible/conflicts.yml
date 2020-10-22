@@ -1,0 +1,42 @@
+---
+
+  - name: Conflicts playbook
+    hosts: fedora.linux.it
+    become: true
+    ignore_errors: true
+    gather_facts: false
+    tasks:
+
+      - name: Gathering Facts
+        setup:
+
+
+      - name: List google directory
+        command:
+          ls /home/google
+        register: list_dir
+
+      - fail:
+          msg: "Listing directory failed."
+        when: list_dir.rc != 0
+
+
+      - name: List devops directory
+        stat:
+          path: /home/devops
+        register: dev_dir
+
+
+      - assert:
+          msg: "home directory does not exist."
+          that: dev_dir.stat.exists
+
+      - name: Get uptime 
+        shell:
+          /usr/bin/uptime
+        register: up_time
+
+      - name: Debug message
+        debug:
+          var: up_time
+        

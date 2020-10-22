@@ -1,0 +1,38 @@
+---
+
+  - name: Vault playbook
+    hosts: linuxdeb
+    become: true
+    vars:
+      agent_dir: /var/agent
+    vars_files:
+      - crypto.yml
+    tasks:
+
+      - name: Create agent folder
+        file:
+          path: "{{ agent_dir }}"
+          owner: root
+          group: root
+          state: directory
+
+
+      - name: Copy secret file
+        copy:
+          src: files/secret.zip
+          dest: "{{ agent_dir }}"
+          force: yes
+
+
+      - name: Extract secret file
+        command:
+          unzip -o -P {{ password }} {{ agent_dir }}/secret.zip -d {{ agent_dir }} 
+
+
+      - name: List agent folder
+        command:
+          ls {{ agent_dir }}
+        register: ls_out
+
+      - debug:
+          var: ls_out

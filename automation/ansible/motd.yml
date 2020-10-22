@@ -1,0 +1,16 @@
+---
+
+  - name: MOTD playbook
+    hosts: 'linux*,!linux'
+    become: true
+    serial: 1
+    tasks:
+      - name: Set motd message
+        lineinfile:
+          path: /etc/motd
+          line: '{{ inventory_hostname }}'
+          insertafter: '^Architecture	: i386'
+          # line should be available
+          state: present
+          # crate file if not available
+          create: true
